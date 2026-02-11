@@ -1,0 +1,41 @@
+.p3 {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffd93d;
+  color: #2c3e50;
+  padding: 20px;
+}
+
+.p3 .logo {
+  max-width: 200px;
+  margin-bottom: 30px;
+}
+
+.cuenta-atras {
+  text-align: center;
+  background: white;
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.cuenta-atras h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ff6b6b;
+}
+
+.tiempo-restante {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #2c3e50;
+  letter-spacing: 5px;
+}
+
+.tiempo-numero {
+  display: inline-block;
+  min-width: 80px;
+}

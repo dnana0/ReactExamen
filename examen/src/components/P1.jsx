@@ -3,7 +3,7 @@ import logo from "../assets/logo.webp"
 import hacerColada from "../assets/hacer-colada.webp"
 import cuidarHermana from "../assets/cuidar-hermana.webp"
 import pasearPerro from "../assets/pasear-perro.webp"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 export default function P1() {
@@ -11,6 +11,8 @@ export default function P1() {
   const [coladaDone, setColadaDone] = useState(false)
   const [hermanaDone, setHermanaDone] = useState(false)
   const [perroDone, setPerroDone] = useState(false)
+
+  const [tema, setTema] = useState("claro")
 
   const delay = ms => new Promise(res => setTimeout(res, ms))
 
@@ -27,7 +29,17 @@ export default function P1() {
     setPerroDone(false)
   }
 
-  
+  useEffect(() => {
+    setTema(localStorage.getItem("theme"))
+    document.documentElement.setAttribute("theme", localStorage.getItem("theme") === "claro" ? "light" : "dark");
+    }, [])
+
+  const cambiarTema = () => {
+    setTema(tema === "claro" ? "oscuro" : "claro")
+    localStorage.setItem("theme", tema);
+    document.documentElement.setAttribute("theme", tema === "claro" ? "light" : "dark");
+  }
+
     return (
     <div className="p1">
         <img src={logo} alt="Logo"/>
@@ -47,7 +59,7 @@ export default function P1() {
 
         <div className="botones-container">
             <button className="boton-tareas" onClick={hacerTareas}>Hacer Tareas</button>
-            <button className="boton-tema">PS</button>
+            <button className="boton-tema" onClick={cambiarTema}>{tema === "claro" ? "Oscuro" : "Claro"}</button>
         </div>
     </div>
   )
