@@ -1,0 +1,48 @@
+.navbar a {
+    color: #BF4646;
+}   
+
+p {
+    font-size: 0.8em;
+    color: #BF4646;
+}
+
+h3 {
+    font-size: 1em;
+    color: #BF4646;
+}
+
+.navbar {
+  font-size: 1rem;  
+  display: flex;
+  justify-content: center;
+  background-color: #EDDCC6;
+  border-radius: 5px;
+  margin-top: 10px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+}
+
+.link-tarea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 10px;
+  min-height: 5vh;
+}
+
+.link-tarea:hover {
+  background-color: #FFF4EA;
+  color: #BF4646;
+  border-radius: 5px;
+}
+
+.link-tarea * {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
