@@ -12,11 +12,11 @@ const registros = [];
 
 // Lista pública de girasoles
 const girasoles = [
-  { nombre: "Boochan", img: "../../assets/boo.webp" },
-  { nombre: "Masao", img: "../../assets/masao.webp" },
-  { nombre: "Kazama", img: "../../assets/kaza.webp" },
-  { nombre: "Nene", img: "../../assets/nene.webp" },
-  { nombre: "Shinchan", img: "../../assets/shin.webp" },
+  { nombre: "Boochan", img: "/assets/boo.webp" },
+  { nombre: "Masao", img: "/assets/masao.webp" },
+  { nombre: "Kazama", img: "/assets/kaza.webp" },
+  { nombre: "Nene", img: "/assets/nene.webp" },
+  { nombre: "Shinchan", img: "/assets/shin.webp" },
 ];
 
 function crearRegistro(req, res) {
@@ -40,8 +40,8 @@ function crearRegistro(req, res) {
     alergenos: Array.isArray(alergenos)
       ? alergenos
       : alergenos
-      ? [alergenos]
-      : [],
+        ? [alergenos]
+        : [],
     fechaRegistro: new Date().toLocaleString("es-ES"),
   };
 
@@ -67,7 +67,7 @@ app.get("/api/girasoles", (req, res) => {
 
 app.get("/registro-exito", (req, res) => {
   res.send(
-    `<!doctype html><html><head><meta charset="utf-8"><title>Éxito</title></head><body style="font-family:Segoe UI,Arial,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f6f8fb;margin:0"><div style="background:#fff;padding:24px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.08);text-align:center"><h2 style="color:#2b6cb0;margin-bottom:8px">¡Registro guardado!</h2><p style="color:#4a5568;margin-bottom:16px">Gracias — el registro se ha guardado correctamente.</p><a href="javascript:history.back()" style="color:#fff;background:#667eea;padding:10px 16px;border-radius:6px;text-decoration:none">Volver</a></div></body></html>`
+    `<!doctype html><html><head><meta charset="utf-8"><title>Éxito</title></head><body style="font-family:Segoe UI,Arial,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f6f8fb;margin:0"><div style="background:#fff;padding:24px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.08);text-align:center"><h2 style="color:#2b6cb0;margin-bottom:8px">¡Registro guardado!</h2><p style="color:#4a5568;margin-bottom:16px">Gracias — el registro se ha guardado correctamente.</p><a href="javascript:history.back()" style="color:#fff;background:#667eea;padding:10px 16px;border-radius:6px;text-decoration:none">Volver</a></div></body></html>`,
   );
 });
 

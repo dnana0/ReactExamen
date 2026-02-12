@@ -1,9 +1,8 @@
 import TarjetaNino from "./TarjetaNino";
-import useParque from "./hooks/useParque.jsx";
+import useParque from "../../hooks/useParque.jsx";
 import logo from "../../assets/logo.webp";
 
-export default function Parque(){
-
+export default function Parque() {
   const { ninosCasa, ninosParque, llevarNinoCasa, llevarNinoParque, error } =
     useParque();
 
