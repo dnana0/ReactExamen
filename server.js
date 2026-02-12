@@ -12,11 +12,11 @@ const registros = [];
 
 // Lista pública de girasoles
 const girasoles = [
-  { nombre: "Boochan", img: "../../webp/boo.webp" },
-  { nombre: "Masao", img: "../../webp/masao.webp" },
-  { nombre: "Kazama", img: "../../webp/kaza.webp" },
-  { nombre: "Nene", img: "../../webp/nene.webp" },
-  { nombre: "Shinchan", img: "../../webp/shin.webp" },
+  { nombre: "Boochan", img: "../../assets/boo.webp" },
+  { nombre: "Masao", img: "../../assets/masao.webp" },
+  { nombre: "Kazama", img: "../../assets/kaza.webp" },
+  { nombre: "Nene", img: "../../assets/nene.webp" },
+  { nombre: "Shinchan", img: "../../assets/shin.webp" },
 ];
 
 function crearRegistro(req, res) {
