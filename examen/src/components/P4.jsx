@@ -1,8 +1,10 @@
+//P4.jsx
 import { useState } from "react";
 
 const validarNombre = (valor) => {
   if (!valor.trim()) return "El nombre es obligatorio";
-  if (valor.length < 5 || edad < 3) return "la edad no es correcta";
+  if (valor.length < 5 || valor.length > 50)
+    return "Longitud el nombre incorrecta";
   return null;
 };
 
@@ -67,4 +69,152 @@ export default function Formulario() {
       [name]: value,
     }));
   };
+
+  const manejaEnvio = (e) => {
+    e.preventDefault();
+    console.log(datosFormulario);
+
+
+    const nuevosErrores = {
+      nombre: validarNombre(datosFormulario.nombre),
+      edad: validarEdad(datosFormulario.edad),
+      direccion: validarDireccion(datosFormulario.direccion),
+      telefono: validarTelefono(datosFormulario.telefono),
+      clase: validarClase(datosFormulario.clase),
+    };
+
+    // Convertimos el objeto de errores en un array de pares [clave, valor]
+    // Ejemplo: { nombre: null, edad: "Error" }
+    // pasa a: [ ["nombre", null], ["edad", "Error"] ]
+    const erroresFiltrados = Object.fromEntries(
+      // Object.entries devuelve un array con [clave, valor] por cada propiedad
+      Object.entries(nuevosErrores)
+      // Filtramos solo las entradas cuyo valor NO sea null
+      // Es decir, nos quedamos únicamente con los campos que tienen error
+      .filter(([_, err]) => err !== null),
+    
+      );
+
+      // Comprobamos si el objeto resultante tiene alguna clave
+      // Si tiene claves, significa que hay errores en el formulario
+      if (Object.keys(erroresFiltrados).length > 0){
+        // Guardamos todos los errores en el estado
+        // (los null indican campos sin error)
+        setErrores(nuevosErrores)
+
+        // Cortamos la ejecucion para que NO se envíe el formulario
+        return;
+      }
+    // Si no hay errores (el objeto está vacío),
+    // el formulario se considera válido y se envía
+      alert("Formulario Enviado")
+  };
+
+
+  const obtenerClasesInputs = (nombreCampo, validador) => {
+    const claseBase = "w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 transition";
+
+    const isInvalid = validador(datosFormulario[nombreCampo]);
+    // Si aún no se ha validado, no pintamos nada
+
+    // Si hay error -> rojo
+    if (datosFormulario[nombreCampo].lenght === 0){
+      return claseBase;
+    } 
+    else if (isInvalid) {
+      return `${claseBase} border-red-500 focus:ring-red-500`;
+    }
+    else {
+      return `${claseBase} border-green-500 focus:ring-green-500`;
+    }
+
+    // Si no hay error -> verde
+  };
+
+
+
+  return (
+        <>
+      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+        Formulario Final
+      </h2>
+      <form onSubmit={manejaEnvio} noValidate>
+        <label htmlFor="nombre">Nombre Completo</label>
+        <input
+          className={obtenerClasesInputs("nombre", validarNombre)}
+          name="nombre"
+          id="nombre"
+          value={datosFormulario.nombre}
+          onChange={manejaCambio}
+          placeholder="Introduce tu nombre:"
+        />
+        {errores.nombre && <p className="errores">{errores.nombre}</p>}
+        <label htmlFor="edad">Edad</label>
+        <input
+          className={obtenerClasesInputs("edad", validarEdad)}
+          name="edad"
+          id="edad"
+          value={datosFormulario.edad}
+          onChange={manejaCambio}
+          placeholder="Introduce tu edad"
+        />
+        {errores.edad && <p className="errores">{errores.edad}</p>}
+        <label htmlFor="direccion">Dirección:</label>
+        <input
+          className={obtenerClasesInputs("direccion", validarDireccion)}
+          name="direccion"
+          id="direccion"
+          value={datosFormulario.direccion}
+          onChange={manejaCambio}
+          placeholder="Introduce tu dirección:"
+        />
+        {errores.direccion && <p className="errores">{errores.direccion}</p>}
+        <label htmlFor="telefono">Teléfono</label>
+        <input
+          className={obtenerClasesInputs("telefono", validarTelefono)}
+          name="telefono"
+          id="telefono"
+          type="tel"
+          value={datosFormulario.telefono}
+          onChange={manejaCambio}
+          placeholder="Introduce tu teléfono:"
+        />
+        {errores.telefono && <p className="errores">{errores.telefono}</p>}
+        <label htmlFor="clase">Clase:</label>
+
+        <label htmlFor="clase">Rosas:</label>
+        <input
+          type="radio"
+          name="clase"
+          value="rosas"
+          onChange={manejaCambio}
+        />
+
+        <label htmlFor="clase">Girasoles:</label>
+        <input
+          type="radio"
+          name="clase"
+          value="girasoles"
+          onChange={manejaCambio}
+        />
+        <label htmlFor="clase">Cerezos:</label>
+        <input
+          type="radio"
+          name="clase"
+          value="cerezos"
+          onChange={manejaCambio}
+        />
+        {errores.clase && <p className="errores">{errores.clase}</p>}
+        <label htmlFor="alergenos">Alérgenos</label>
+        <input
+          type="checkbox"
+          name="alergenos"
+          value={datosFormulario.alergenos}
+          onChange={manejaCambio}
+        />
+
+        <button type="submit">ENVIAR</button>
+      </form>
+    </> 
+  );
 }
