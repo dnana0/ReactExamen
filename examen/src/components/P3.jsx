@@ -39,7 +39,7 @@ export default function P3() {
 
   return (
     <div className="p3">
-      <img src={logo} alt="Logo" className="logo" />
+      <img src={logo} alt="Logo"  className="logo" />
       
       <div className="cuenta-atras">
         <h2>Tiempo hasta la Merena</h2>

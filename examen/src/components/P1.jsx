@@ -31,13 +31,13 @@ export default function P1() {
 
   useEffect(() => {
     setTema(localStorage.getItem("theme"))
-    document.documentElement.setAttribute("theme", localStorage.getItem("theme") === "claro" ? "light" : "dark");
+    document.documentElement.setAttribute("theme", localStorage.getItem("theme") === "light" ? "light" : "dark");
     }, [])
 
   const cambiarTema = () => {
-    setTema(tema === "claro" ? "oscuro" : "claro")
+    setTema(tema === "light" ? "dark" : "light")
     localStorage.setItem("theme", tema);
-    document.documentElement.setAttribute("theme", tema === "claro" ? "light" : "dark");
+    document.documentElement.setAttribute("theme", tema === "light" ? "light" : "dark");
   }
 
     return (
@@ -59,7 +59,7 @@ export default function P1() {
 
         <div className="botones-container">
             <button className="boton-tareas" onClick={hacerTareas}>Hacer Tareas</button>
-            <button className="boton-tema" onClick={cambiarTema}>{tema === "claro" ? "Oscuro" : "Claro"}</button>
+            <button className="boton-tema" onClick={cambiarTema}>{tema === "light" ? "Oscuro" : "Claro"}</button>
         </div>
     </div>
   )
